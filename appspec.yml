@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+files:
+   - source: /
+     destination: /opt/aitrader/
+permissions:
+   - object: /opt/aitrader
+     pattern: "**"
+     owner: apache
+     group: apache
+     mode: 755
+     type:
+       - file
