@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const socketIO = require('socket.io');
 const http = require('http');
+const path = require('path');
 
 let Stock = require('./models/stocks.model');
 
