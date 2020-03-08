@@ -23,7 +23,7 @@ export default class Fetch extends Component {
     }
 
     untrackStock(id) {
-        axios.post('http://localhost:5000/stocks/update/'+id, {
+        axios.post('http://ec2-3-90-189-122.compute-1.amazonaws.com:5000/stocks/update/'+id, {
                 userId: ''
             })
             .then(response => {
@@ -40,7 +40,7 @@ export default class Fetch extends Component {
     }
 
     trackStock(id) {
-        axios.post('http://localhost:5000/stocks/update/'+id, {
+        axios.post('http://ec2-3-90-189-122.compute-1.amazonaws.com:5000/stocks/update/'+id, {
                 userId: '5e5361bc97ab544798349ccf'
             })
             .then(response => {

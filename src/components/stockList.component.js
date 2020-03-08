@@ -35,7 +35,7 @@ export default class StocksList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/stocks')
+        axios.get('http://ec2-3-90-189-122.compute-1.amazonaws.com:5000/stocks')
             .then(response => {
                 this.setState({stocks: response.data});
             })
