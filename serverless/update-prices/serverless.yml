@@ -1,0 +1,56 @@
+# Serverless Stack Configuration
+
+service: update-prices
+
+provider:
+  name: aws
+  runtime: python3.6
+  profile: default
+  region: us-east-1
+  stage: dev
+  environment: ${file(env.yml)} # Referencing an outside file for env variable for the whole service
+
+  #VPC settings are to have the ability to query the DB and have Internet Access
+  vpc:
+    securityGroupIds:
+      - "sg-03b2676494e3650d4"
+    subnetIds:
+      - "subnet-0c80de12788ec3f49"
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "logs:Describe*"
+        - "logs:Get*"
+        - "logs:List*"
+        - "logs:StartQuery"
+        - "logs:StopQuery"
+        - "logs:TestMetricFilter"
+        - "logs:FilterLogEvents"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource: "arn:aws:s3:::${self:provider.environment.BUCKETNAME}/*"
+
+functions:
+  updater:
+    handler: updater.updater
+    events:
+      - schedule:
+        name: daily-scheduler
+        description: 'every minute'
+        rate: cron(* * * * *)
+        enabled: false
+
+package:
+  exclude:
+    - node_modules/**
+    - README.md
+    - files/**
+
+plugins:
+  - serverless-python-requirements
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
