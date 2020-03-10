@@ -19,7 +19,7 @@ export default class Portfolio extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://ec2-3-90-189-122.compute-1.amazonaws.com:5000/portfolio', {
+        axios.get('http://ec2-3-217-82-10.compute-1.amazonaws.com:5000/portfolio', {
             userId: '5e5361bc97ab544798349ccf'
         })
             .then(response => {

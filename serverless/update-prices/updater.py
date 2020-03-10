@@ -39,20 +39,24 @@ def updater(event, context):
     host = os.environ['DBHOST']
     dbName = os.environ['DBNAME']
     dbObject = DBWrapper.DBClass(host, dbName)
-    collectionObj = dbObject.getCollection('stocks')
+    clientObj = dbObject.getDBClient()
+    collectionObj = clientObj.stocks
 
     # data = parseData(os.environ['FINANCIALURL])
 
     # get all stocks from stocks collection
     dbStocks = []
-    for stock in collectionObj.find():
-        dbStocks.append(stock)
+    test = collectionObj.find_one({'indice': 'AAPL'})
+    print(test)
+
+    # for stock in collectionObj.find():
+    #     dbStocks.append(stock)
     
     # newCount = data['count']
     # print('API data count => ' + str(data['count']))
 
-    dbCount = len(dbStocks)
-    print('Array DB count => ' + str(len(dbStocks)))
+    # dbCount = len(dbStocks)
+    # print('Array DB count => ' + str(dbCount))
 
     # if newCount != dbCount:
     #     print('Need to get the missing or added stocks')

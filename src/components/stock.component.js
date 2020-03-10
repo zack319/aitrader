@@ -14,7 +14,7 @@ export default class Stock extends Component {
         super(props);
         this.state = {
             stock: {},
-            endpoint: "http://ec2-3-90-189-122.compute-1.amazonaws.com:5000",
+            endpoint: "http://ec2-3-217-82-10.compute-1.amazonaws.com:5000",
             increase: null
         };
     }

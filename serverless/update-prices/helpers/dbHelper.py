@@ -2,7 +2,6 @@ import sys
 import os
 import json
 import boto3
-import pymysql
 import requests
 import requests
 import time
@@ -16,12 +15,12 @@ class DBClass:
     def __init__(self, host, dbName):
         self.setClient(host)
         self.setDBName(dbName)
-    
-    def getCollection(self, name):
+
+    def getDBClient(self):
         client = self.getClient()
         dbClient = client.get_database(self.getDBName())
 
-        return dbClient.name
+        return dbClient
     
     def update(self, collection, primaryKey, primaryValue, changeKey, changeValue):
         collection.update_one(

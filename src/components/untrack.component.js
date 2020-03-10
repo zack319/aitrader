@@ -23,7 +23,7 @@ export default class Fetch extends Component {
     }
 
     untrackStock(id) {
-        axios.post('http://ec2-3-90-189-122.compute-1.amazonaws.com:5000/portfolio/update/'+id, {
+        axios.post('http://ec2-3-217-82-10.compute-1.amazonaws.com:5000/portfolio/update/'+id, {
                 userId: ''
             })
             .then(response => {
